@@ -14,12 +14,19 @@ class Fibonacci {
 
 public:
     // TODO: 实现构造器
-    // Fibonacci()
+    Fibonacci() {
+        cache[0] = 0;
+        cache[1] = 1;
+        for (int i = 2; i < 16; ++i) {
+            cache[i] = cache[i - 1] + cache[i - 2];
+        }
+        cached = 16;
+    }
 
     // TODO: 实现正确的缓存优化斐波那契计算
     size_t get(int i) {
-        for (; false; ++cached) {
-            cache[cached] = cache[cached - 1] + cache[cached - 2];
+        if (i < 0 || i >= 16) {
+            throw std::out_of_range("Index out of bounds");
         }
         return cache[i];
     }
